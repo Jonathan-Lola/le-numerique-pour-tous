@@ -209,18 +209,29 @@
       }
 
       /* Pour les écrans de taille mobile uniquement */
-      .cta img {
-        position: relative;
-        left: 0; /* Remettre à zéro le positionnement à gauche */
-        right: 0; /* Remettre à zéro le positionnement à droite */
-        transform: translateY(0); /* Enlever l'offset vertical */
-        margin: 20px auto; /* Centrer l'image */
+      .cta {
+        display: block;
+        text-align: center;
       }
 
-      /* Ajuster les autres styles spécifiques aux images mobiles */
-      .cta {
-        display: block; /* Pour que le contenu soit bien aligné */
-        text-align: center; /* Centrer le texte et les images */
+      .cta img {
+        width: 100px; /* Réduire la taille de l'image */
+        height: 100px; /* Réduire la taille de l'image */
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto; /* Centrer les images */
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        filter: brightness(1.1);
+      }
+
+      .cta div {
+        margin-top: 20px; /* Espacement entre les éléments */
       }
     }
 
@@ -298,19 +309,19 @@
   </div>
 </section>
 
-<section class="cta section fade-in" style="display: flex; justify-content: space-between; align-items: center; text-align: center; position: relative;">
+<section class="cta section fade-in" style="display: flex; justify-content: center; align-items: center; text-align: center;">
   <!-- Image à gauche -->
-  <img src="Images/Logo.jpg" alt="Ta photo à gauche" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; position: absolute; left: 200px; top: 50%; transform: translateY(-50%); box-shadow: 0 4px 8px rgba(0,0,0,0.2); filter: brightness(1.1);">
+  <img src="Images/Logo.jpg" alt="Ta photo à gauche">
 
   <!-- Contenu central -->
-  <div style="flex: 1; text-align: center; margin: 0 160px;"> <!-- Assurez-vous que ce soit aligné -->
+  <div style="flex: 1; text-align: center;">
     <h3>Prêt à faire le premier pas ?</h3>
     <p>Contactez-nous pour un premier échange gratuit et sans engagement</p>
     <a href="contact.html">Prendre contact</a>
   </div>
 
   <!-- Image à droite -->
-  <img src="Images/Moi.png" alt="Ta photo à droite" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; position: absolute; right: 200px; top: 50%; transform: translateY(-50%); box-shadow: 0 4px 8px rgba(0,0,0,0.2); filter: brightness(1.1);">
+  <img src="Images/Moi.png" alt="Ta photo à droite">
 </section>
 
 <footer>
