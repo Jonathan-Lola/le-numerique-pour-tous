@@ -168,17 +168,21 @@
       color: white;
       padding: 50px 20px;
       text-align: center;
-      opacity: 1; /* Fix opacity issue */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
-    .cta h3 {
-      color: white !important; /* Forcer la couleur blanche */
-      margin-bottom: 30px;
+    .cta-text {
+      flex: 1;
+      max-width: 600px;
     }
 
-    .cta p {
-      color: white !important;  /* Texte en blanc */
-      font-size: 1.2em;
+    .cta h3, .cta p {
+      color: white;
     }
 
     .cta a {
@@ -189,11 +193,26 @@
       text-decoration: none;
       font-weight: bold;
       transition: background 0.3s, color 0.3s;
+      display: inline-block;
+      margin-top: 20px;
     }
 
     .cta a:hover {
       background-color: yellow;
       color: #2c3e50;
+    }
+
+    .cta-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      filter: brightness(1.1);
+    }
+
+    .mobile-only {
+      display: none;
     }
 
     footer {
@@ -203,35 +222,18 @@
     }
 
     @media (max-width: 768px) {
-      .services {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* Pour les écrans de taille mobile uniquement */
       .cta {
-        display: block;
+        flex-direction: column;
         text-align: center;
       }
 
-      .cta img {
-        width: 100px; /* Réduire la taille de l'image */
-        height: 100px; /* Réduire la taille de l'image */
-        border-radius: 50%;
-        object-fit: cover;
-        margin: 0 auto; /* Centrer les images */
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transform: none;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        filter: brightness(1.1);
+      .mobile-only {
+        display: block;
+        margin: 20px auto;
       }
 
-      .cta div {
-        margin-top: 20px; /* Espacement entre les éléments */
+      .cta-text {
+        order: 2;
       }
     }
 
@@ -270,24 +272,24 @@
 </section>
 
 <section class="section fade-in">
-  <h3 style="text-align: center;">
-    <a href="services.html" style="color: #007ACC; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
+  <h3>
+    <a href="services.html" style="color: #007ACC; text-decoration: none; display: inline-flex; align-items: center;">
       <i class="fas fa-wrench" style="font-size: 24px; margin-right: 10px;"></i>Nos services
     </a>
   </h3>
   <div class="services">
     <div class="card">
-      <i class="fas fa-users" style="font-size: 40px; color: #007ACC; margin-bottom: 15px;"></i>
+      <i class="fas fa-users"></i>
       <h4>À l’écoute de tous</h4>
       <p>Des solutions adaptées pour les débutants, les seniors et les novices du numérique.</p>
     </div>
     <div class="card">
-      <i class="fas fa-tools" style="font-size: 40px; color: #007ACC; margin-bottom: 15px;"></i>
+      <i class="fas fa-tools"></i>
       <h4>Dépannage rapide</h4>
       <p>Une assistance fiable pour vos problèmes informatiques ou d’équipement.</p>
     </div>
     <div class="card">
-      <i class="fas fa-book" style="font-size: 40px; color: #007ACC; margin-bottom: 15px;"></i>
+      <i class="fas fa-book"></i>
       <h4>Formations ludiques</h4>
       <p>Apprenez à utiliser Internet, les smartphones ou vos applications avec pédagogie.</p>
     </div>
@@ -300,7 +302,7 @@
     <i class="fas fa-star" style="color: yellow;"></i>
   </h3>
   <div class="testimonial">
-    « Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans ! » 
+    « Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans ! »
     <br><strong>- Claire, retraitée</strong>
   </div>
   <div class="testimonial">
@@ -309,19 +311,16 @@
   </div>
 </section>
 
-<section class="cta section fade-in" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-  <!-- Image à gauche -->
-  <img src="Images/Logo.jpg" alt="Ta photo à gauche">
+<section class="cta section fade-in">
+  <img src="Images/Logo.jpg" alt="Logo" class="cta-img mobile-only">
 
-  <!-- Contenu central -->
-  <div style="flex: 1; text-align: center;">
+  <div class="cta-text">
     <h3>Prêt à faire le premier pas ?</h3>
     <p>Contactez-nous pour un premier échange gratuit et sans engagement</p>
     <a href="contact.html">Prendre contact</a>
   </div>
 
-  <!-- Image à droite -->
-  <img src="Images/Moi.png" alt="Ta photo à droite">
+  <img src="Images/Moi.png" alt="Ta photo" class="cta-img mobile-only">
 </section>
 
 <footer>
@@ -329,7 +328,6 @@
 </footer>
 
 <script>
-  // Appliquer l'animation de fondu au changement de page
   window.addEventListener('beforeunload', function () {
     document.body.classList.add('fade-out');
   });
@@ -338,7 +336,6 @@
     document.body.classList.add('fade-in');
   });
 
-  // Animation au scroll
   const sections = document.querySelectorAll('.section');
 
   const observer = new IntersectionObserver(entries => {
