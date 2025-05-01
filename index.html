@@ -248,6 +248,28 @@
     margin: 0 40px;
   }
 }
+<style>
+  /* ... Ton code CSS actuel ... */
+
+  /* Autres styles ici */
+
+  @media (max-width: 768px) {
+    /* Pour les écrans de taille mobile uniquement */
+    .cta img {
+      position: relative;
+      left: 0; /* Remettre à zéro le positionnement à gauche */
+      right: 0; /* Remettre à zéro le positionnement à droite */
+      transform: translateY(0); /* Enlever l'offset vertical */
+      margin: 20px auto; /* Centrer l'image */
+    }
+
+    /* Ajuster les autres styles spécifiques aux images mobiles */
+    .cta {
+      display: block; /* Pour que le contenu soit bien aligné */
+      text-align: center; /* Centrer le texte et les images */
+    }
+  }
+</style>
 
   </style>
 </head>
