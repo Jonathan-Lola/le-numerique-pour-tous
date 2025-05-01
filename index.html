@@ -311,17 +311,83 @@
   </div>
 </section>
 
-<section class="cta section fade-in">
-  <img src="Images/Logo.jpg" alt="Logo" class="cta-img mobile-only">
+<!-- ... tout le reste de la page reste inchangé jusqu'à la section .cta ... -->
 
+<section class="cta section fade-in">
+  <!-- Image gauche sur PC, en haut sur mobile -->
+  <img src="Images/Logo.jpg" alt="Logo" class="cta-img left-img">
+
+  <!-- Texte au centre -->
   <div class="cta-text">
     <h3>Prêt à faire le premier pas ?</h3>
     <p>Contactez-nous pour un premier échange gratuit et sans engagement</p>
     <a href="contact.html">Prendre contact</a>
   </div>
 
-  <img src="Images/Moi.png" alt="Ta photo" class="cta-img mobile-only">
+  <!-- Image droite sur PC, en bas sur mobile -->
+  <img src="Images/Moi.png" alt="Ta photo" class="cta-img right-img">
 </section>
+
+<!-- ... puis le footer et scripts ... -->
+
+<style>
+  .cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: #007ACC;
+    color: white;
+    padding: 50px 20px;
+  }
+
+  .cta-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .cta-text {
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .cta {
+      flex-direction: column;
+    }
+
+    .left-img {
+      order: 1;
+    }
+
+    .cta-text {
+      order: 2;
+    }
+
+    .right-img {
+      order: 3;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .left-img {
+      order: 1;
+    }
+
+    .cta-text {
+      order: 2;
+    }
+
+    .right-img {
+      order: 3;
+    }
+  }
+</style>
+
 
 <footer>
   &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
