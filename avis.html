@@ -11,7 +11,7 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+      background: linear-gradient(135deg, #6a1b9a, #ab47bc); /* Fond dégradé */
       color: #2c3e50;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
@@ -24,7 +24,6 @@
       color: white;
       padding: 20px 0;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     h1 {
       font-size: 3em;
@@ -35,155 +34,60 @@
       color: white;
       text-decoration: none;
       font-weight: 600;
-      position: relative;
-      transition: transform 0.3s ease;
     }
-    nav a:hover {
-      transform: scale(1.1);
-      color: yellow;
+    .avis-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 40px 0;
     }
-    nav a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: yellow;
-      transform: scaleX(0);
-      transform-origin: bottom right;
-      transition: transform 0.25s ease-out;
-    }
-    nav a:hover::before {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #007ACC;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #ecf0f1;
-      margin-top: 40px;
-      font-size: 0.9em;
-    }
-    .avis-section {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
     .review {
-      background-color: #ffffff;
+      background-color: white;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      margin: 20px;
       max-width: 400px;
+      margin: 20px;
       text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
     .review:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
-
     .review .header {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
     }
-
     .review .header img {
       border-radius: 50%;
       width: 50px;
       height: 50px;
       margin-right: 15px;
     }
-
     .review .header .name {
       font-size: 1.2em;
       font-weight: bold;
       color: #333;
-      margin-bottom: 5px;
     }
-
-    .review .header .age-range {
-      font-size: 0.9em;
-      color: #777;
-      margin-bottom: 10px;
-    }
-
     .review .stars {
       margin-top: 10px;
     }
-
     .review .stars i {
       color: #FFD700;
       margin-right: 3px;
     }
-
     .review p {
       font-size: 1em;
       margin-top: 10px;
       color: #555;
     }
-
-    .review .delete-btn {
-      background-color: transparent;
-      border: none;
-      color: transparent;
-      cursor: pointer;
-      font-size: 16px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .review:hover .delete-btn {
-      opacity: 1;
-    }
-
-    .avis-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #ecf0f1;
-      margin-top: 40px;
-      font-size: 0.9em;
-    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Le Numérique pour Tous</h1>
     <nav>
@@ -195,16 +99,15 @@
   </header>
 
   <section class="avis-section">
-    <h2>Avis de nos clients</h2>
+    <h2 style="text-align: center; color: white;">Avis de nos clients</h2>
 
-    <div class="avis-container" id="dynamic-reviews">
-      <!-- Avis ajoutés manuellement dans le code HTML -->
+    <div class="avis-container">
+      <!-- Exemple d'avis -->
       <div class="review">
         <div class="header">
           <img src="path_to_image/photo_homme.jpg" alt="Photo de l'utilisateur">
           <div>
             <div class="name">Jean D.</div>
-            <div class="age-range">41-60 ans</div>
           </div>
         </div>
         <div class="stars">
@@ -217,12 +120,12 @@
         <p>Un service exceptionnel ! Ils m'ont vraiment aidé à comprendre mes appareils numériques, très professionnels et à l'écoute.</p>
       </div>
 
+      <!-- Autre exemple d'avis -->
       <div class="review">
         <div class="header">
           <img src="path_to_image/photo_femme.jpg" alt="Photo de l'utilisateur">
           <div>
             <div class="name">Marie L.</div>
-            <div class="age-range">20-40 ans</div>
           </div>
         </div>
         <div class="stars">
@@ -235,7 +138,25 @@
         <p>Un accompagnement très personnalisé et des conseils vraiment utiles ! Je me sens beaucoup plus confiante avec mon ordinateur maintenant.</p>
       </div>
 
-      <!-- Ajoutez ici d'autres avis -->
+      <!-- Ajoutez d'autres avis ici -->
+      <div class="review">
+        <div class="header">
+          <img src="path_to_image/photo_homme.jpg" alt="Photo de l'utilisateur">
+          <div>
+            <div class="name">Luc P.</div>
+          </div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p>Une équipe vraiment top ! Ils m'ont expliqué chaque étape avec patience et clarté. Je recommande vivement leurs services !</p>
+      </div>
+
+      <!-- Répétez pour d'autres avis -->
     </div>
   </section>
 
