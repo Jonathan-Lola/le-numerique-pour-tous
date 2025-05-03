@@ -14,8 +14,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+      background: linear-gradient(135deg, #E8A87C, #D78D67); /* Dégradé moderne */
       color: #7d92a7;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     header {
@@ -27,7 +28,9 @@
 
     header h1 {
       margin: 0;
-      font-size: 2.5em;
+      font-size: 3em; /* Taille plus grande pour un effet moderne */
+      font-weight: 700;
+      letter-spacing: 2px;
     }
 
     nav a {
@@ -48,13 +51,15 @@
       text-align: center;
       padding: 80px 20px;
       position: relative;
+      background-attachment: fixed; /* Effet Parallax */
+      background-size: cover;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.3); /* Moins de transparence pour plus de clarté */
+      background: rgba(0, 0, 0, 0.4);
       z-index: 0;
     }
 
@@ -76,19 +81,20 @@
     }
 
     .hero a {
-      background-color: #007ACC;
-      color: white;
+      background-color: #F3D547;
+      color: #2F5061;
       padding: 12px 25px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
       position: relative;
       z-index: 1;
     }
 
     .hero a:hover {
-      background-color: #005f99;
+      background-color: #FFD700;
+      transform: scale(1.05); /* Animation lors du survol */
     }
 
     .section {
@@ -96,7 +102,7 @@
       text-align: center;
       opacity: 0;
       transform: translateY(30px);
-      transition: all 0.8s ease;
+      transition: all 0.8s ease-out;
     }
 
     .section.visible {
@@ -110,10 +116,10 @@
     }
 
     .services {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      flex-wrap: wrap;
+      justify-items: center;
     }
 
     .card {
@@ -123,11 +129,12 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       width: 260px;
       text-align: center;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .card i {
@@ -148,7 +155,7 @@
     }
 
     .cta {
-      background-color: #007ACC;
+      background-color: #495e75;
       color: white;
       padding: 50px 20px;
       text-align: center;
@@ -165,25 +172,22 @@
       max-width: 600px;
     }
 
-    .cta h3, .cta p {
-      color: white;
-    }
-
     .cta a {
-      background-color: white;
-      color: #007ACC;
+      background-color: #F3D547;
+      color: #2F5061;
       padding: 12px 25px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s, transform 0.3s;
       display: inline-block;
       margin-top: 20px;
     }
 
     .cta a:hover {
-      background-color: yellow;
+      background-color: #FFD700;
       color: #6b86a1;
+      transform: scale(1.05);
     }
 
     .cta-img {
@@ -193,10 +197,6 @@
       object-fit: cover;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       filter: brightness(1.1);
-    }
-
-    .mobile-only {
-      display: none;
     }
 
     footer {
@@ -211,13 +211,12 @@
         text-align: center;
       }
 
-      .mobile-only {
-        display: block;
-        margin: 20px auto;
-      }
-
       .cta-text {
         order: 2;
+      }
+
+      .cta-img {
+        order: 1;
       }
     }
 
@@ -230,6 +229,7 @@
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
   </style>
 </head>
 <body class="fade-in">
@@ -286,10 +286,12 @@
     <i class="fas fa-star" style="color: yellow;"></i>
   </h3>
   <div class="testimonial">
-    « Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans ! »<br><strong>- Claire, retraitée</strong>
+    « Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans ! »
+    <br><strong>- Claire, retraitée</strong>
   </div>
   <div class="testimonial">
-    « Enfin quelqu’un qui explique sans jargon, avec patience et humour. »<br><strong>- Marc, 45 ans</strong>
+    « Enfin quelqu’un qui explique sans jargon, avec patience et humour. »
+    <br><strong>- Marc, 45 ans</strong>
   </div>
 </section>
 
@@ -300,35 +302,25 @@
     <p>Contactez-nous pour un premier échange gratuit et sans engagement</p>
     <a href="contact.html">Prendre contact</a>
   </div>
-  <img src="Images/Moi.png" alt="Ta photo" class="cta-img right-img">
+  <div class="cta-img"></div>
 </section>
 
 <footer>
-  &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
+  <p>&copy; 2025 Le Numérique pour Tous</p>
 </footer>
 
 <script>
-  window.addEventListener('beforeunload', function () {
-    document.body.classList.add('fade-out');
-  });
-
-  window.addEventListener('load', function () {
-    document.body.classList.add('fade-in');
-  });
-
-  const sections = document.querySelectorAll('.section');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+  // Fonction pour ajouter la classe visible lors du défilement
+  window.addEventListener('scroll', function() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section) => {
+      const sectionPosition = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      if (sectionPosition < windowHeight * 0.8) {
+        section.classList.add('visible');
       }
     });
-  }, {
-    threshold: 0.5
   });
-
-  sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
