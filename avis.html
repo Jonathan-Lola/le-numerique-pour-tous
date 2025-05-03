@@ -439,24 +439,23 @@
     let count = 0;
 
     reviews.forEach(starContainer => {
-      let stars = 0;
-      const children = starContainer.querySelectorAll("i.fa-star");
-      stars = children.length; // On ne compte que les étoiles pleines
-      total += stars;
+      // Compte uniquement les étoiles PLEINES (class="fas fa-star")
+      const fullStars = starContainer.querySelectorAll("i.fas.fa-star").length;
+      total += fullStars;
       count++;
     });
 
     const average = total / count;
     const rounded = Math.round(average * 10) / 10;
 
-    const fullStars = Math.floor(rounded);
-    const halfStar = (rounded % 1 >= 0.25 && rounded % 1 < 0.75) ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStar;
+    const full = Math.floor(rounded);
+    const half = (rounded % 1 >= 0.25 && rounded % 1 < 0.75) ? 1 : 0;
+    const empty = 5 - full - half;
 
     const starHTML = `
-      ${'<i class="fas fa-star"></i>'.repeat(fullStars)}
-      ${halfStar ? '<i class="fas fa-star-half-alt"></i>' : ''}
-      ${'<i class="far fa-star"></i>'.repeat(emptyStars)}
+      ${'<i class="fas fa-star"></i>'.repeat(full)}
+      ${half ? '<i class="fas fa-star-half-alt"></i>' : ''}
+      ${'<i class="far fa-star"></i>'.repeat(empty)}
     `;
 
     document.getElementById("average-rating").innerHTML =
@@ -465,6 +464,7 @@
 
   window.onload = renderAverageRating;
 </script>
+
 
 </body>
 </html>
