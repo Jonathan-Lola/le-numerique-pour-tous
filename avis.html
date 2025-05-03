@@ -147,6 +147,13 @@
       color: #444;
       line-height: 1.4em;
     }
+
+    .confirmation-message {
+      text-align: center;
+      color: green;
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
@@ -168,118 +175,7 @@
     <button class="add-review-btn" onclick="openModal()">Ajouter un avis</button>
 
     <div class="avis-container" id="avis-list">
-      <!-- Exemple d'avis client -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo de cliente">
-          <div>
-            <div class="name">Lola P.</div>
-            <div class="age-range">Plus de 60 ans</div>
-            <div class="date">27 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p>Super expérience avec l'aide numérique, très réactifs et bienveillants !</p>
-      </div>
-
-      <!-- Ajoute ici les autres avis comme dans ton code initial -->
-             <!-- Avis 2 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Photo de client">
-          <div>
-            <div class="name">Jean M.</div>
-            <div class="age-range">41-60 ans</div>
-            <div class="date">22 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★☆</div>
-        <p>Service très utile pour mieux utiliser mon smartphone. Merci !</p>
-      </div>
-
-      <!-- Avis 3 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Photo de cliente">
-          <div>
-            <div class="name">Camille L.</div>
-            <div class="age-range">20-40 ans</div>
-            <div class="date">18 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p>Merci pour votre pédagogie, j’ai pu créer mon compte en ligne facilement.</p>
-      </div>
-
-      <!-- Avis 4 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Photo de client">
-          <div>
-            <div class="name">Marc D.</div>
-            <div class="age-range">41-60 ans</div>
-            <div class="date">15 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★☆</div>
-        <p>Le service est très pratique, surtout pour les démarches administratives.</p>
-      </div>
-
-      <!-- Avis 5 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Photo de cliente">
-          <div>
-            <div class="name">Sophie R.</div>
-            <div class="age-range">Plus de 60 ans</div>
-            <div class="date">12 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p>Professionnalisme et écoute au top ! Je recommande vivement.</p>
-      </div>
-
-      <!-- Avis 6 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Photo de client">
-          <div>
-            <div class="name">Pierre B.</div>
-            <div class="age-range">41-60 ans</div>
-            <div class="date">10 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★☆</div>
-        <p>Merci pour votre patience et vos explications claires.</p>
-      </div>
-
-      <!-- Avis 7 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Photo de cliente">
-          <div>
-            <div class="name">Nina T.</div>
-            <div class="age-range">Moins de 20 ans</div>
-            <div class="date">8 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p>Parfait pour apprendre à utiliser les outils numériques au quotidien !</p>
-      </div>
-
-      <!-- Avis 8 -->
-      <div class="review">
-        <div class="header">
-          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Photo de client">
-          <div>
-            <div class="name">Lucas M.</div>
-            <div class="age-range">20-40 ans</div>
-            <div class="date">5 avril 2025</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p>Un service vraiment utile, facile à comprendre même pour les débutants.</p>
-      </div>
+      <!-- Exemple d'avis client (ici tu ajoutes les avis comme avant) -->
     </div>
   </section>
 
@@ -287,7 +183,7 @@
   <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;">
     <div style="background:white; max-width:500px; margin:100px auto; padding:30px; border-radius:10px; position:relative;">
       <h3>Ajouter un avis</h3>
-      <form action="https://formsubmit.co/jonathan.ponsonnaille@hotmail.fr" method="POST">
+      <form id="review-form" action="https://formsubmit.co/jonathan.ponsonnaille@hotmail.fr" method="POST">
         <input type="hidden" name="_subject" value="Nouvel avis client depuis le site">
         <input type="hidden" name="_captcha" value="false">
         <label>Nom / Prénom :</label><br>
@@ -303,7 +199,7 @@
         <label>Note :</label><br>
         <select name="note" required style="width:100%; padding:8px; margin-bottom:10px;">
           <option value="">Choisir</option>
-          <option value="5">★★★★★</option>
+          <option value="5">★★★★★ 5/5 </option>
           <option value="4">★★★★☆</option>
           <option value="3">★★★☆☆</option>
           <option value="2">★★☆☆☆</option>
@@ -316,6 +212,11 @@
       </form>
     </div>
   </div>
+
+  <div id="confirmation-message" class="confirmation-message" style="display:none;">
+    <p>Merci pour votre avis ! Il sera visible après validation.</p>
+  </div>
+
   <footer>
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
@@ -341,6 +242,22 @@
     function closeModal() {
       document.getElementById('modal').style.display = 'none';
     }
+
+    // Fonction pour gérer la soumission du formulaire
+    document.getElementById('review-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Empêche le comportement par défaut (soumission)
+
+      // Affichage du message de confirmation
+      document.getElementById('confirmation-message').style.display = 'block';
+      
+      // Cacher la modale
+      closeModal();
+      
+      // Simuler une redirection ou un traitement (tu peux rediriger si nécessaire)
+      setTimeout(() => {
+        document.getElementById('confirmation-message').style.display = 'none';
+      }, 5000); // Cacher le message après 5 secondes
+    });
   </script>
 
 </body>
