@@ -258,7 +258,44 @@
     </div>
     
     <!-- Avis fixes -->
-    <div class="avis-container" id="dynamic-reviews"></div>
+
+    <div class="avis-container">
+      <div class="review">
+        <div class="header">
+          <div class="name">Claire D.</div>
+          <div class="age-range">Plus de 60 ans</div>
+          <div class="date">15 mars 2025</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p>Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans !</p>
+      </div>
+    
+      <div class="review">
+        <div class="header">
+          <div class="name">Marc L.</div>
+          <div class="age-range">41-60 ans</div>
+          <div class="date">10 avril 2025</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+        </div>
+        <p>Enfin quelqu’un qui explique sans jargon, avec patience et humour.</p>
+      </div>
+    
+      <div class="review">
+        <div class="header">
+          <div class="name">Lola P.</div>
+          <div class="age-range">Plus de 60 ans</div>
+          <div class="date">27 avril 2025</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p>Super expérience avec l’aide numérique, très réactifs et bienveillants !</p>
+      </div>
+    </div>    
 
     <!-- Formulaire d'avis -->
     <div class="add-review">
@@ -303,126 +340,6 @@
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
 
-  <script>
-    const getReviews = () => {
-      const reviews = JSON.parse(localStorage.getItem('reviews'));
-      return reviews ? reviews : [];
-    };
   
-    const generateStars = (rating) => {
-      let stars = '';
-      for (let i = 0; i < 5; i++) {
-        stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
-      }
-      return stars;
-    };
-  
-    const calculateAverageRating = (reviews) => {
-      if (reviews.length === 0) return 0;
-      const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-      return (total / reviews.length).toFixed(1);
-    };
-  
-    const renderAverageRating = (average) => {
-      const container = document.getElementById('average-rating');
-      const rounded = Math.round(average);
-      let stars = '';
-  
-      for (let i = 0; i < 5; i++) {
-        stars += i < rounded ? '<i class="fas fa-star" style="color:#FFD700;"></i>' : '<i class="far fa-star" style="color:#FFD700;"></i>';
-      }
-  
-      container.innerHTML = `
-        <h3>Note moyenne des utilisateurs :</h3>
-        <div style="font-size: 1.5em; margin: 10px 0;">${stars} (${average}/5)</div>
-      `;
-    };
-  
-    const displayReviews = () => {
-      const container = document.getElementById('dynamic-reviews');
-      // Supprime seulement les anciens avis dynamiques, pas les fixes
-      const oldDynamicReviews = container.querySelectorAll('.review.dynamic');
-      oldDynamicReviews.forEach(el => el.remove());
-  
-      // Ajout de l'avis fixe de Lola B.
-      const fixedReview = {
-        name: 'Lola P.',
-        rating: 5,
-        text: 'Super expérience avec l\'aide numérique, très réactifs et bienveillants !',
-        ageRange: 'Plus de 60 ans',
-        date: '27 avril 2025'
-      };
-
-      // Récupérer les avis dynamiques depuis localStorage
-      const reviews = getReviews();
-      reviews.unshift(fixedReview); // Ajouter l'avis fixe en tête du tableau
-      reviews.forEach((review) => {
-        const reviewElement = document.createElement('div');
-        reviewElement.className = 'review dynamic';
-        reviewElement.innerHTML = `
-          <div class="header">
-            <div class="name">${review.name}</div>
-            <div class="age-range">${review.ageRange}</div>
-            <div class="date">${review.date}</div>
-          </div>
-          <div class="stars">${generateStars(review.rating)}</div>
-          <p>${review.text}</p>
-        `;
-        container.appendChild(reviewElement);
-      });
-  
-      // Calculer et afficher la note moyenne
-      const average = calculateAverageRating(reviews);
-      renderAverageRating(average);
-    };
-  
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('loaded');
-      displayReviews();
-    });
-  
-    // Gérer le formulaire d'avis
-    const reviewForm = document.getElementById('review-form');
-    const confirmationMessage = document.getElementById('confirmation-message');
-  
-    reviewForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-  
-      const name = document.getElementById('name').value;
-      const rating = document.getElementById('rating').value;
-      const ageRange = document.getElementById('age-range').value;
-      const text = document.getElementById('review-text').value;
-  
-      if (name && rating && ageRange && text) {
-        // Sauvegarder l'avis dans localStorage
-        const reviews = getReviews();
-        reviews.unshift({ name, rating, text, ageRange, date: new Date().toLocaleDateString() });
-        localStorage.setItem('reviews', JSON.stringify(reviews));
-  
-        // Afficher le message de confirmation
-        confirmationMessage.style.display = 'block';
-        setTimeout(() => confirmationMessage.style.display = 'none', 4000);
-  
-        // Réinitialiser le formulaire
-        reviewForm.reset();
-        displayReviews(); // Mettre à jour l'affichage des avis
-      }
-    });
-
-    // Gérer la notation par étoiles
-    const starRating = document.getElementById('starRating');
-    const ratingInput = document.getElementById('rating');
-  
-    starRating.addEventListener('click', (e) => {
-      if (e.target.classList.contains('fa-star')) {
-        const rating = e.target.getAttribute('data-value');
-        ratingInput.value = rating;
-        const stars = starRating.querySelectorAll('i');
-        stars.forEach(star => star.classList.remove('hover', 'selected'));
-        e.target.classList.add('selected');
-        e.target.previousElementSibling && e.target.previousElementSibling.classList.add('selected');
-      }
-    });
-  </script>
 </body>
 </html>
