@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Accueil | Le Numérique pour Tous</title>
+  <title>Le Numérique pour Tous | Accueil</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <style>
@@ -24,32 +24,33 @@
       color: white;
       padding: 20px 0;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
 
     header h1 {
       margin: 0;
-      font-size: 3em; /* Taille plus grande pour un effet moderne */
+      font-size: 3.2em; /* Taille plus grande pour un effet moderne */
       font-weight: 700;
       letter-spacing: 2px;
     }
 
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s;
     }
 
     nav a:hover {
-      color: yellow;
+      color: #F3D547;
     }
 
     .hero {
       background: url('https://images.unsplash.com/photo-1580894732444-98f1f4f44d3d?fit=crop&w=1600&q=80') center/cover;
       color: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 100px 20px;
       position: relative;
       background-attachment: fixed; /* Effet Parallax */
       background-size: cover;
@@ -63,19 +64,16 @@
       z-index: 0;
     }
 
-    .hero h2, .hero p {
-      position: relative;
-      z-index: 1;
-    }
-
     .hero h2 {
-      font-size: 2.8em;
+      position: relative;
+      font-size: 3.2em;
       margin-bottom: 15px;
       animation: fadeInDown 1s ease-out;
     }
 
     .hero p {
-      font-size: 1.2em;
+      position: relative;
+      font-size: 1.5em;
       margin-bottom: 25px;
       animation: fadeInUp 1.2s ease-out;
     }
@@ -83,7 +81,7 @@
     .hero a {
       background-color: #F3D547;
       color: #2F5061;
-      padding: 12px 25px;
+      padding: 14px 30px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
@@ -94,7 +92,7 @@
 
     .hero a:hover {
       background-color: #FFD700;
-      transform: scale(1.05); /* Animation lors du survol */
+      transform: scale(1.1); /* Animation lors du survol */
     }
 
     .section {
@@ -113,51 +111,73 @@
     .section h3 {
       color: #007ACC;
       margin-bottom: 30px;
+      font-size: 2.4em;
     }
 
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       justify-items: center;
+      margin-top: 30px;
     }
 
     .card {
       background: white;
-      padding: 25px;
+      padding: 30px;
       border-radius: 15px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      width: 260px;
+      width: 320px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     .card i {
-      font-size: 40px;
+      font-size: 50px;
       color: #007ACC;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card h4 {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      color: #777;
     }
 
     .testimonials {
       background: #ecf0f1;
-      padding: 50px 20px;
+      padding: 60px 20px;
+      margin-top: 50px;
     }
 
     .testimonial {
       max-width: 600px;
       margin: 0 auto 30px;
       font-style: italic;
+      font-size: 1.2em;
+      color: #444;
+      text-align: center;
+    }
+
+    .testimonial strong {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
     }
 
     .cta {
       background-color: #495e75;
       color: white;
-      padding: 50px 20px;
+      padding: 60px 20px;
       text-align: center;
       display: flex;
       justify-content: center;
@@ -165,6 +185,7 @@
       flex-direction: row;
       gap: 30px;
       flex-wrap: wrap;
+      margin-top: 80px;
     }
 
     .cta-text {
@@ -175,7 +196,7 @@
     .cta a {
       background-color: #F3D547;
       color: #2F5061;
-      padding: 12px 25px;
+      padding: 15px 30px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
@@ -186,8 +207,7 @@
 
     .cta a:hover {
       background-color: #FFD700;
-      color: #6b86a1;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .cta-img {
@@ -203,6 +223,12 @@
       text-align: center;
       padding: 20px;
       background-color: #ecf0f1;
+      margin-top: 80px;
+    }
+
+    footer p {
+      font-size: 1.1em;
+      color: #444;
     }
 
     @media (max-width: 768px) {
@@ -232,7 +258,7 @@
 
   </style>
 </head>
-<body class="fade-in">
+<body>
 
 <header>
   <h1>Le Numérique pour Tous</h1>
@@ -250,12 +276,12 @@
   <a href="services.html">Découvrir nos services</a>
 </section>
 
-<section class="section fade-in">
+<section class="section">
   <h3>Qui sommes-nous ?</h3>
   <p>Nous aidons les débutants, les seniors et tous ceux qui en ont besoin à mieux comprendre, utiliser et apprécier le numérique. Avec patience et pédagogie.</p>
 </section>
 
-<section class="section fade-in">
+<section class="section">
   <h3>
     <a href="services.html" style="color: #007ACC; text-decoration: none; display: inline-flex; align-items: center;">
       <i class="fas fa-wrench" style="font-size: 24px; margin-right: 10px;"></i>Nos services
@@ -280,11 +306,8 @@
   </div>
 </section>
 
-<section class="testimonials section fade-in">
-  <h3>
-    <a href="avis.html" style="color: inherit; text-decoration: none;">Ils nous ont fait confiance</a>
-    <i class="fas fa-star" style="color: yellow;"></i>
-  </h3>
+<section class="testimonials">
+  <h3>Ils nous ont fait confiance</h3>
   <div class="testimonial">
     « Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans ! »
     <br><strong>- Claire, retraitée</strong>
@@ -295,14 +318,15 @@
   </div>
 </section>
 
-<section class="cta section fade-in">
-  <img src="Images/Logo.jpg" alt="Logo" class="cta-img left-img">
+<section class="cta">
+  <div class="cta-img">
+    <img src="Images/Logo.jpg" alt="Logo" class="cta-img">
+  </div>
   <div class="cta-text">
     <h3>Prêt à faire le premier pas ?</h3>
     <p>Contactez-nous pour un premier échange gratuit et sans engagement</p>
     <a href="contact.html">Prendre contact</a>
   </div>
-  <div class="cta-img"></div>
 </section>
 
 <footer>
@@ -310,7 +334,6 @@
 </footer>
 
 <script>
-  // Fonction pour ajouter la classe visible lors du défilement
   window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('.section');
     sections.forEach((section) => {
