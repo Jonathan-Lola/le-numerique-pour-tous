@@ -222,6 +222,9 @@
     <button class="add-review-btn" onclick="openModal()">Ajouter un avis</button>
 
     <div class="avis-container" id="avis-list">
+
+      <div id="average-rating" class="average-rating"></div>
+
      <!-- Avis 1 -->
 <div class="review">
   <div class="header">
@@ -432,6 +435,24 @@
       });
     });
   </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const reviews = document.querySelectorAll(".review");
+    let totalStars = 0;
+
+    reviews.forEach(review => {
+      const stars = review.querySelectorAll(".stars i.fas").length; // étoiles pleines uniquement
+      totalStars += stars;
+    });
+
+    const average = (totalStars / reviews.length).toFixed(1); // une décimale
+    const averageElement = document.getElementById("average-rating");
+
+    if (averageElement) {
+      averageElement.textContent = `Note moyenne : ${average} / 5 ⭐`;
+    }
+  });
+</script>
 
 </body>
 </html>
