@@ -1,111 +1,206 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avis Clients | Le Numérique pour Tous</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #f2f4f8;
-      color: #1f2937;
+      padding: 0;
+      background: linear-gradient(to right, #e0f7fa, #fefcea);
+      color: #2c3e50;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
-
+    body.loaded {
+      opacity: 1;
+    }
     header {
-      background-color: #0066cc;
+      background-color: #007ACC;
       color: white;
       padding: 20px 0;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
     nav a {
+      margin: 0 20px;
       color: white;
-      margin: 0 15px;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s;
+      position: relative;
+      transition: transform 0.3s ease;
     }
-
     nav a:hover {
-      color: #ffea00;
+      transform: scale(1.1);
+      color: yellow;
     }
-
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: yellow;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    nav a:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
     .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #2c3e50;
-    }
-
-    .avis-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .review {
-      background-color: white;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
       border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
-    .review:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    h2 {
+      color: #007ACC;
     }
-
-    .name {
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #333;
-    }
-
-    .age-range, .date {
-      font-size: 0.9rem;
-      color: #6b7280;
-      margin-top: 2px;
-    }
-
-    .stars {
-      margin: 10px 0;
-      color: #facc15;
-    }
-
-    .review p {
-      font-size: 0.95rem;
-      color: #374151;
-      line-height: 1.5;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #e5e7eb;
-      font-size: 0.9rem;
-      color: #4b5563;
-      margin-top: 50px;
+      background-color: #ecf0f1;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+    .avis-section {
+      text-align: center;
+      padding: 40px 20px;
     }
 
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 1.6rem;
+    /* Design moderne des avis */
+    .review {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px;
+      max-width: 400px;
+      text-align: left;
+      position: relative;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
       }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .review:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .review .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      box-shadow: 0 0 0 3px #facc15;
+    }
+
+    .review .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .review .header .name {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .review .stars {
+      margin-top: 10px;
+    }
+
+    .review .stars i {
+      color: #FFD700;
+      margin-right: 3px;
+    }
+
+    .review .delete-btn {
+      background-color: transparent;
+      border: none;
+      color: transparent;
+      cursor: pointer;
+      font-size: 16px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .review:hover .delete-btn {
+      opacity: 1;
+    }
+
+    .avis-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .add-review {
+      margin-top: 40px;
+    }
+
+    .rating {
+      display: flex;
+      gap: 8px;
+      font-size: 1.5em;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .rating .fas {
+      transition: color 0.2s;
+    }
+    .rating .fas.hover,
+    .rating .fas.selected {
+      color: #FFD700;
+    }
+
+    .confirmation-message {
+      display: none;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      transition: opacity 0.5s;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>Le Numérique pour Tous</h1>
     <nav>
@@ -116,50 +211,145 @@
     </nav>
   </header>
 
-  <main class="container">
-    <h2>Ce que nos clients disent</h2>
-    <div class="avis-container">
-      <div class="review">
-        <div class="name">Lola P.</div>
-        <div class="age-range">Plus de 60 ans</div>
-        <div class="date">27 avril 2025</div>
-        <div class="stars">★★★★★</div>
-        <p>Super expérience avec l'aide numérique, très réactifs et bienveillants !</p>
-      </div>
-      <div class="review">
-        <div class="name">Julien M.</div>
-        <div class="age-range">41-60 ans</div>
-        <div class="date">15 avril 2025</div>
-        <div class="stars">★★★★☆</div>
-        <p>Très bon service, j'ai appris à mieux utiliser mon ordinateur. Merci !</p>
-      </div>
-      <div class="review">
-        <div class="name">Sophie L.</div>
-        <div class="age-range">20-40 ans</div>
-        <div class="date">10 mars 2025</div>
-        <div class="stars">★★★★★</div>
-        <p>Professionnel, ponctuel et pédagogue. Je recommande à 100%.</p>
-      </div>
-      <div class="review">
-        <div class="name">René D.</div>
-        <div class="age-range">Plus de 60 ans</div>
-        <div class="date">2 mars 2025</div>
-        <div class="stars">★★★★☆</div>
-        <p>Service très pratique, je me sens plus à l'aise avec ma tablette maintenant.</p>
-      </div>
-      <div class="review">
-        <div class="name">Camille T.</div>
-        <div class="age-range">Moins de 20 ans</div>
-        <div class="date">20 février 2025</div>
-        <div class="stars">★★★★★</div>
-        <p>Merci pour l'aide avec les démarches en ligne de ma grand-mère !</p>
+  <section class="avis-section">
+    <h2>Avis de nos clients</h2>
+
+    <div id="average-rating" style="margin-bottom: 30px;">
+      <!-- La moyenne des notes sera injectée ici -->
+    </div>
+    
+    <div class="avis-container" id="dynamic-reviews"></div>
+
+    <div class="add-review">
+      <h3>Ajoutez un avis</h3>
+      <form id="review-form">
+        <label for="name">Nom & Prénom :</label>
+        <input type="text" id="name" required placeholder="Votre nom & prénom">
+
+        <label for="rating">Note :</label>
+        <div class="rating" id="starRating">
+          <i class="fas fa-star" data-value="1"></i>
+          <i class="fas fa-star" data-value="2"></i>
+          <i class="fas fa-star" data-value="3"></i>
+          <i class="fas fa-star" data-value="4"></i>
+          <i class="fas fa-star" data-value="5"></i>
+        </div>
+        <input type="hidden" name="rating" id="rating" required>
+        
+        <label for="age-range">Tranche d'âge :</label>
+        <select id="age-range" required>
+          <option value="">Sélectionnez votre tranche d'âge</option>
+          <option value="moins de 20 ans">Moins de 20 ans</option>
+          <option value="20-40 ans">20-40 ans</option>
+          <option value="41-60 ans">41-60 ans</option>
+          <option value="plus de 60 ans">Plus de 60 ans</option>
+        </select>
+
+        <label for="review-text">Avis :</label>
+        <textarea id="review-text" required placeholder="Votre avis"></textarea>
+
+        <button type="submit">Ajouter l'avis</button>
+      </form>
+
+      <div id="confirmation-message" class="confirmation-message">
+        Merci beaucoup pour votre avis ! Nous l'avons bien pris en compte.
       </div>
     </div>
-  </main>
+  </section>
 
   <footer>
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
 
+  <script>
+    const getReviews = () => {
+      const reviews = JSON.parse(localStorage.getItem('reviews'));
+      return reviews ? reviews : [];
+    };
+  
+    const generateStars = (rating) => {
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+      }
+      return stars;
+    };
+  
+    const calculateAverageRating = (reviews) => {
+      if (reviews.length === 0) return 0;
+      const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+      return (total / reviews.length).toFixed(1);
+    };
+
+    const renderReviews = () => {
+      const reviews = getReviews();
+      const container = document.getElementById('dynamic-reviews');
+      const averageRating = calculateAverageRating(reviews);
+      document.getElementById('average-rating').innerHTML = `<h3>Note moyenne : ${averageRating} / 5</h3>`;
+      
+      container.innerHTML = reviews.map((review, index) => `
+        <div class="review">
+          <div class="header">
+            <img src="https://randomuser.me/api/portraits/men/${index+1}.jpg" alt="Profil" class="avatar" />
+            <div class="name">${review.name}</div>
+          </div>
+          <div class="stars">${generateStars(review.rating)}</div>
+          <p>${review.reviewText}</p>
+          <button class="delete-btn" onclick="deleteReview(${index})">❌</button>
+        </div>
+      `).join('');
+    };
+  
+    const deleteReview = (index) => {
+      const reviews = getReviews();
+      reviews.splice(index, 1);
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+      renderReviews();
+    };
+  
+    document.getElementById('review-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const rating = document.getElementById('rating').value;
+      const ageRange = document.getElementById('age-range').value;
+      const reviewText = document.getElementById('review-text').value;
+
+      const newReview = {
+        name,
+        rating: parseInt(rating),
+        reviewText,
+        ageRange
+      };
+      const reviews = getReviews();
+      reviews.push(newReview);
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+
+      document.getElementById('confirmation-message').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('confirmation-message').style.display = 'none';
+      }, 3000);
+
+      renderReviews();
+    });
+
+    document.getElementById('starRating').addEventListener('click', (e) => {
+      const rating = e.target.dataset.value;
+      if (rating) {
+        document.getElementById('rating').value = rating;
+        [...document.querySelectorAll('.rating i')].forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('selected');
+          } else {
+            star.classList.remove('selected');
+          }
+        });
+      }
+    });
+
+    window.onload = () => {
+      document.body.classList.add('loaded');
+      renderReviews();
+    };
+  </script>
 </body>
 </html>
