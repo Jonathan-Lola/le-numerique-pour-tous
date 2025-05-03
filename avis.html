@@ -11,7 +11,7 @@
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #6a1b9a, #ab47bc); /* Fond dégradé */
+      background: linear-gradient(to right, #6a11cb, #2575fc);
       color: #2c3e50;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
@@ -24,109 +24,229 @@
       color: white;
       padding: 20px 0;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     h1 {
       font-size: 3em;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     }
-    .avis-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      margin: 40px 0;
+    nav a {
+      margin: 0 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: transform 0.3s ease;
     }
+    nav a:hover {
+      transform: scale(1.1);
+      color: yellow;
+    }
+    nav a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: yellow;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+    nav a:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007ACC;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ecf0f1;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+    .avis-section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* Disposition des avis modernes en cartes */
     .review {
-      background-color: white;
+      background-color: #ffffff;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      max-width: 400px;
       margin: 20px;
+      max-width: 400px;
       text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
     .review:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
+
     .review .header {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
     }
-    .review .header img {
+
+    .review img {
       border-radius: 50%;
       width: 50px;
       height: 50px;
       margin-right: 15px;
     }
+
     .review .header .name {
       font-size: 1.2em;
       font-weight: bold;
       color: #333;
+      margin-bottom: 5px;
     }
+
+    .review .header .age-range {
+      font-size: 0.9em;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
     .review .stars {
       margin-top: 10px;
     }
+
     .review .stars i {
       color: #FFD700;
       margin-right: 3px;
     }
+
     .review p {
       font-size: 1em;
       margin-top: 10px;
       color: #555;
     }
+
+    /* Disposition des avis en grille */
+    .avis-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    
+    .average-rating {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
   </style>
 </head>
-<body class="loaded">
-
+<body>
   <header>
     <h1>Le Numérique pour Tous</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="avis.html">Avis</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
   <section class="avis-section">
-    <h2 style="text-align: center; color: white;">Avis de nos clients</h2>
+    <h2>Avis de nos clients</h2>
 
-    <div class="avis-container">
-      <!-- Exemple d'avis -->
-      <div class="review">
-        <div class="header">
-          <img src="path_to_image/photo_homme.jpg" alt="Photo de l'utilisateur">
-          <div>
-            <div class="name">Jean D.</div>
-          </div>
-        </div>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <p>Un service exceptionnel ! Ils m'ont vraiment aidé à comprendre mes appareils numériques, très professionnels et à l'écoute.</p>
-      </div>
-
-      <!-- Autre exemple d'avis -->
-      <div class="review">
-        <div class="header">
-          <img src="path_to_image/photo_femme.jpg" alt="Photo de l'utilisateur">
-          <div>
-            <div class="name">Marie L.</div>
-          </div>
-        </div>
-        <div class="stars">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <p>Un accompagnement très personnalisé et des conseils vraiment utiles ! Je me sens beaucoup plus confiante avec mon ordinateur maintenant.</p>
-      </div>
+    <div class="average-rating" id="average-rating">
+      <!-- La moyenne des notes sera injectée ici -->
+    </div>
+    
+    <div class="avis-container" id="dynamic-reviews">
+      <!-- Avis dynamiques ici -->
     </div>
   </section>
 
+  <footer>
+    &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
+  </footer>
+
+  <script>
+    const reviews = [
+      { name: "Jean D.", rating: 5, text: "Un service exceptionnel ! Ils m'ont vraiment aidé à comprendre mes appareils numériques, très professionnels et à l'écoute.", ageRange: "20-40 ans", date: "10 mars 2025", photo: "https://via.placeholder.com/50/0000FF/808080?text=J" },
+      { name: "Sophie L.", rating: 4, text: "Très satisfaite, l'aide est personnalisée et efficace. Je recommande vivement.", ageRange: "41-60 ans", date: "15 mars 2025", photo: "https://via.placeholder.com/50/FF69B4/808080?text=S" },
+      { name: "Paul T.", rating: 3, text: "Une aide utile, mais j'aurais aimé plus de suivi après la formation.", ageRange: "Plus de 60 ans", date: "18 mars 2025", photo: "https://via.placeholder.com/50/000000/808080?text=P" },
+      { name: "Lola P.", rating: 5, text: "Super expérience avec l'aide numérique, très réactifs et bienveillants !", ageRange: "Plus de 60 ans", date: "20 mars 2025", photo: "https://via.placeholder.com/50/FF6347/808080?text=L" },
+      { name: "Lucie M.", rating: 4, text: "Bonne assistance, très claire et simple à suivre. Merci pour votre patience.", ageRange: "20-40 ans", date: "22 mars 2025", photo: "https://via.placeholder.com/50/8A2BE2/808080?text=L" },
+      { name: "Marc H.", rating: 5, text: "Une aide indispensable pour mieux maîtriser les outils numériques !", ageRange: "41-60 ans", date: "24 mars 2025", photo: "https://via.placeholder.com/50/008080/808080?text=M" },
+      { name: "Claire B.", rating: 4, text: "L'accompagnement est très satisfaisant, je recommande.", ageRange: "20-40 ans", date: "27 mars 2025", photo: "https://via.placeholder.com/50/FF4500/808080?text=C" },
+      { name: "Pierre V.", rating: 3, text: "Service correct mais manque d'interaction pendant la formation.", ageRange: "41-60 ans", date: "28 mars 2025", photo: "https://via.placeholder.com/50/000080/808080?text=P" },
+      { name: "Alice F.", rating: 5, text: "Excellente formation, je me sens beaucoup plus à l'aise avec mon ordinateur maintenant.", ageRange: "Plus de 60 ans", date: "30 mars 2025", photo: "https://via.placeholder.com/50/ADFF2F/808080?text=A" }
+    ];
+
+    const generateStars = (rating) => {
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+      }
+      return stars;
+    };
+
+    const calculateAverageRating = () => {
+      const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+      return (total / reviews.length).toFixed(1);
+    };
+
+    const renderReviews = () => {
+      const reviewContainer = document.getElementById('dynamic-reviews');
+      reviewContainer.innerHTML = '';
+      reviews.forEach(review => {
+        const reviewDiv = document.createElement('div');
+        reviewDiv.classList.add('review');
+
+        reviewDiv.innerHTML = `
+          <div class="header">
+            <img src="${review.photo}" alt="Photo de ${review.name}">
+            <div>
+              <div class="name">${review.name}</div>
+              <div class="age-range">${review.ageRange}</div>
+            </div>
+          </div>
+          <div class="stars">${generateStars(review.rating)}</div>
+          <p>${review.text}</p>
+        `;
+        reviewContainer.appendChild(reviewDiv);
+      });
+
+      document.getElementById('average-rating').innerHTML = `Moyenne des avis : ${calculateAverageRating()} / 5`;
+    };
+
+    // Initialisation
+    window.onload = () => {
+      document.body.classList.add('loaded');
+      renderReviews();
+    };
+  </script>
 </body>
 </html>
