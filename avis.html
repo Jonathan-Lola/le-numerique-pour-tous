@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avis Clients | Le Numérique pour Tous</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,11 +14,6 @@
       padding: 0;
       background-color: #f4f7fb;
       color: #2c3e50;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    body.loaded {
-      opacity: 1;
     }
     header {
       background-color: #007ACC;
@@ -58,16 +54,52 @@
       transform: scaleX(1);
       transform-origin: bottom left;
     }
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .avis-section {
+      text-align: center;
+      padding: 40px 20px;
     }
-    h2 {
-      color: #007ACC;
+    .avis-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .review {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 10px;
+      max-width: 400px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .review:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    .review .header {
+      margin-bottom: 10px;
+    }
+    .review .name {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+    .review .age-range,
+    .review .date {
+      font-size: 0.9em;
+      color: #777;
+    }
+    .review .stars i {
+      color: #FFD700;
+      margin-right: 3px;
+    }
+    .review p {
+      margin-top: 10px;
+      font-size: 1em;
+      color: #555;
     }
     footer {
       text-align: center;
@@ -75,167 +107,6 @@
       background-color: #ecf0f1;
       margin-top: 40px;
       font-size: 0.9em;
-    }
-    .avis-section {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    /* Disposition des avis modernes en cartes */
-    .review {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin: 20px;
-      max-width: 400px;
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    .review:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .review .header {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      margin-bottom: 10px;
-    }
-
-    .review .header .date {
-      font-size: 0.9em;
-      color: #888;
-      margin-bottom: 5px;
-    }
-
-    .review .header .name {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
-    }
-
-    .review .header .age-range {
-      font-size: 0.9em;
-      color: #777;
-      margin-bottom: 10px;
-    }
-
-    .review .stars {
-      margin-top: 10px;
-    }
-
-    .review .stars i {
-      color: #FFD700;
-      margin-right: 3px;
-    }
-
-    .review p {
-      font-size: 1em;
-      margin-top: 10px;
-      color: #555;
-    }
-
-    .review .delete-btn {
-      background-color: transparent;
-      border: none;
-      color: transparent;
-      cursor: pointer;
-      font-size: 16px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .review:hover .delete-btn {
-      opacity: 1;
-    }
-
-    /* Disposition des avis en grille */
-    .avis-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .add-review {
-      margin-top: 40px;
-    }
-    form {
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input[type="text"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #007ACC;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background-color: #005fa3;
-    }
-
-    .rating {
-      display: flex;
-      gap: 8px;
-      font-size: 1.5em;
-      color: #ccc;
-      cursor: pointer;
-    }
-    .rating .fas {
-      transition: color 0.2s;
-    }
-    .rating .fas.hover,
-    .rating .fas.selected {
-      color: #FFD700;
-    }
-
-    .confirmation-message {
-      display: none;
-      background-color: #28a745;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 20px;
-      text-align: center;
-      font-weight: bold;
-      transition: opacity 0.5s;
     }
   </style>
 </head>
@@ -252,38 +123,7 @@
 
   <section class="avis-section">
     <h2>Avis de nos clients</h2>
-
-    <div id="average-rating" style="margin-bottom: 30px;">
-      <!-- La moyenne des notes sera injectée ici -->
-    </div>
-    
-    <!-- Avis fixes -->
-
     <div class="avis-container">
-      <div class="review">
-        <div class="header">
-          <div class="name">Claire D.</div>
-          <div class="age-range">Plus de 60 ans</div>
-          <div class="date">15 mars 2025</div>
-        </div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p>Grâce à cette aide, j’ai appris à envoyer mes premiers emails à 82 ans !</p>
-      </div>
-    
-      <div class="review">
-        <div class="header">
-          <div class="name">Marc L.</div>
-          <div class="age-range">41-60 ans</div>
-          <div class="date">10 avril 2025</div>
-        </div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-        </div>
-        <p>Enfin quelqu’un qui explique sans jargon, avec patience et humour.</p>
-      </div>
-    
       <div class="review">
         <div class="header">
           <div class="name">Lola P.</div>
@@ -293,53 +133,14 @@
         <div class="stars">
           <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </div>
-        <p>Super expérience avec l’aide numérique, très réactifs et bienveillants !</p>
+        <p>Super expérience avec l'aide numérique, très réactifs et bienveillants !</p>
       </div>
-    </div>    
-
-    <!-- Formulaire d'avis -->
-    <div class="add-review">
-      <h3>Ajoutez un avis</h3>
-      <form id="review-form">
-        <label for="name">Nom & Prénom :</label>
-        <input type="text" id="name" required placeholder="Votre nom & prénom">
-
-        <label for="rating">Note :</label>
-        <div class="rating" id="starRating">
-          <i class="fas fa-star" data-value="1"></i>
-          <i class="fas fa-star" data-value="2"></i>
-          <i class="fas fa-star" data-value="3"></i>
-          <i class="fas fa-star" data-value="4"></i>
-          <i class="fas fa-star" data-value="5"></i>
-        </div>
-        <input type="hidden" name="rating" id="rating" required>
-        
-        <label for="age-range">Tranche d'âge :</label>
-        <select id="age-range" required>
-          <option value="">Sélectionnez votre tranche d'âge</option>
-          <option value="moins de 20 ans">Moins de 20 ans</option>
-          <option value="20-40 ans">20-40 ans</option>
-          <option value="41-60 ans">41-60 ans</option>
-          <option value="plus de 60 ans">Plus de 60 ans</option>
-        </select>
-
-        <label for="review-text">Avis :</label>
-        <textarea id="review-text" required placeholder="Votre avis"></textarea>
-
-        <button type="submit">Ajouter l'avis</button>
-      </form>
-
-      <!-- Message de confirmation -->
-      <div id="confirmation-message" class="confirmation-message">
-        Merci beaucoup pour votre avis ! Nous l'avons bien pris en compte.
-      </div>
+      <!-- Tu peux ajouter ici d'autres avis manuellement -->
     </div>
   </section>
 
   <footer>
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
-
-  
 </body>
 </html>
