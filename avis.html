@@ -74,24 +74,17 @@
       text-align: left;
       position: relative;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
+      animation: fadeIn 1s forwards;
     }
 
-    .review:nth-child(1) { animation-delay: 0.1s; }
-    .review:nth-child(2) { animation-delay: 0.2s; }
-    .review:nth-child(3) { animation-delay: 0.3s; }
-    .review:nth-child(4) { animation-delay: 0.4s; }
-    .review:nth-child(5) { animation-delay: 0.5s; }
-    .review:nth-child(6) { animation-delay: 0.6s; }
-    .review:nth-child(7) { animation-delay: 0.7s; }
-    .review:nth-child(8) { animation-delay: 0.8s; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .review:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
     }
 
     .review img {
@@ -292,7 +285,7 @@
 
     document.getElementById('average-rating').innerHTML =
       `<strong>Note moyenne : </strong> ${stars.split('').map((s, i) =>
-        `<i class="${i < rounded ? 'fas' : 'far'} fa-star"></i>`).join('')} (${average.toFixed(1)}/5)`;
+        `<i class="${i < rounded ? 'fas' : 'far'} fa-star"></i>`).join('')} (${average.toFixed(1)}/5)` ;
   </script>
 
 </body>
