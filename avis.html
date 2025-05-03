@@ -158,10 +158,23 @@
       gap: 20px;
       justify-content: center;
     }
-    
-    .average-rating {
-      font-size: 1.5em;
-      margin-bottom: 30px;
+
+    /* Pour les étoiles de la moyenne */
+    .average-rating .stars {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .average-rating .stars i {
+      color: #FFD700;
+      margin-right: 5px;
+    }
+
+    .average-rating .rating-text {
+      font-size: 1.2em;
+      margin-left: 15px;
+      color: #333;
     }
   </style>
 </head>
@@ -180,7 +193,7 @@
     <h2>Avis de nos clients</h2>
 
     <div class="average-rating" id="average-rating">
-      <!-- La moyenne des notes sera injectée ici -->
+      <!-- Moyenne des avis sous forme d'étoiles -->
     </div>
     
     <div class="avis-container" id="dynamic-reviews">
@@ -239,7 +252,12 @@
         reviewContainer.appendChild(reviewDiv);
       });
 
-      document.getElementById('average-rating').innerHTML = `Moyenne des avis : ${calculateAverageRating()} / 5`;
+      const averageRating = calculateAverageRating();
+      const averageStars = generateStars(Math.round(averageRating));
+      document.getElementById('average-rating').innerHTML = `
+        <div class="stars">${averageStars}</div>
+        <div class="rating-text">${averageRating} / 5</div>
+      `;
     };
 
     // Initialisation
