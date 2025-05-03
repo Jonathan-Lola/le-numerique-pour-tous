@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avis Clients | Le Numérique pour Tous</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -13,11 +13,6 @@
       padding: 0;
       background: linear-gradient(to right, #e0f7fa, #fefcea);
       color: #2c3e50;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    body.loaded {
-      opacity: 1;
     }
     header {
       background-color: #007ACC;
@@ -81,7 +76,6 @@
       padding: 40px 20px;
     }
 
-    /* Design moderne des avis */
     .review {
       background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(8px);
@@ -172,31 +166,28 @@
       margin-top: 40px;
     }
 
-    .rating {
-      display: flex;
-      gap: 8px;
-      font-size: 1.5em;
-      color: #ccc;
-      cursor: pointer;
+    /* Styles pour le formulaire d'ajout d'avis */
+    .add-review form input,
+    .add-review form select,
+    .add-review form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
     }
-    .rating .fas {
-      transition: color 0.2s;
-    }
-    .rating .fas.hover,
-    .rating .fas.selected {
-      color: #FFD700;
-    }
-
-    .confirmation-message {
-      display: none;
-      background-color: #28a745;
+    .add-review form button {
+      background-color: #007ACC;
       color: white;
       padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 20px;
-      text-align: center;
-      font-weight: bold;
-      transition: opacity 0.5s;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .add-review form button:hover {
+      background-color: #005fa3;
     }
   </style>
 </head>
@@ -214,11 +205,55 @@
   <section class="avis-section">
     <h2>Avis de nos clients</h2>
 
-    <div id="average-rating" style="margin-bottom: 30px;">
-      <!-- La moyenne des notes sera injectée ici -->
+    <div class="avis-container">
+      <!-- Avis 1 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profil" class="avatar" />
+          <div class="name">Pierre Dupont</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p>Super service, très professionnel et patient ! Un grand merci !</p>
+      </div>
+
+      <!-- Avis 2 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Profil" class="avatar" />
+          <div class="name">Sophie Martin</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p>Excellente formation, j'ai appris beaucoup de choses très utiles.</p>
+      </div>
+
+      <!-- Avis 3 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Profil" class="avatar" />
+          <div class="name">Lucie Bernier</div>
+        </div>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <i class="far fa-star"></i>
+        </div>
+        <p>Service très utile, je recommande vivement !</p>
+      </div>
     </div>
-    
-    <div class="avis-container" id="dynamic-reviews"></div>
 
     <div class="add-review">
       <h3>Ajoutez un avis</h3>
@@ -250,106 +285,11 @@
 
         <button type="submit">Ajouter l'avis</button>
       </form>
-
-      <div id="confirmation-message" class="confirmation-message">
-        Merci beaucoup pour votre avis ! Nous l'avons bien pris en compte.
-      </div>
     </div>
   </section>
 
   <footer>
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
-
-  <script>
-    const getReviews = () => {
-      const reviews = JSON.parse(localStorage.getItem('reviews'));
-      return reviews ? reviews : [];
-    };
-  
-    const generateStars = (rating) => {
-      let stars = '';
-      for (let i = 0; i < 5; i++) {
-        stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
-      }
-      return stars;
-    };
-  
-    const calculateAverageRating = (reviews) => {
-      if (reviews.length === 0) return 0;
-      const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-      return (total / reviews.length).toFixed(1);
-    };
-
-    const renderReviews = () => {
-      const reviews = getReviews();
-      const container = document.getElementById('dynamic-reviews');
-      const averageRating = calculateAverageRating(reviews);
-      document.getElementById('average-rating').innerHTML = `<h3>Note moyenne : ${averageRating} / 5</h3>`;
-      
-      container.innerHTML = reviews.map((review, index) => `
-        <div class="review">
-          <div class="header">
-            <img src="https://randomuser.me/api/portraits/men/${index+1}.jpg" alt="Profil" class="avatar" />
-            <div class="name">${review.name}</div>
-          </div>
-          <div class="stars">${generateStars(review.rating)}</div>
-          <p>${review.reviewText}</p>
-          <button class="delete-btn" onclick="deleteReview(${index})">❌</button>
-        </div>
-      `).join('');
-    };
-  
-    const deleteReview = (index) => {
-      const reviews = getReviews();
-      reviews.splice(index, 1);
-      localStorage.setItem('reviews', JSON.stringify(reviews));
-      renderReviews();
-    };
-  
-    document.getElementById('review-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const rating = document.getElementById('rating').value;
-      const ageRange = document.getElementById('age-range').value;
-      const reviewText = document.getElementById('review-text').value;
-
-      const newReview = {
-        name,
-        rating: parseInt(rating),
-        reviewText,
-        ageRange
-      };
-      const reviews = getReviews();
-      reviews.push(newReview);
-      localStorage.setItem('reviews', JSON.stringify(reviews));
-
-      document.getElementById('confirmation-message').style.display = 'block';
-      setTimeout(() => {
-        document.getElementById('confirmation-message').style.display = 'none';
-      }, 3000);
-
-      renderReviews();
-    });
-
-    document.getElementById('starRating').addEventListener('click', (e) => {
-      const rating = e.target.dataset.value;
-      if (rating) {
-        document.getElementById('rating').value = rating;
-        [...document.querySelectorAll('.rating i')].forEach((star, index) => {
-          if (index < rating) {
-            star.classList.add('selected');
-          } else {
-            star.classList.remove('selected');
-          }
-        });
-      }
-    });
-
-    window.onload = () => {
-      document.body.classList.add('loaded');
-      renderReviews();
-    };
-  </script>
 </body>
 </html>
