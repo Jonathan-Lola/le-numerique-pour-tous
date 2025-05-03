@@ -201,13 +201,36 @@
     .confirmation-content button:hover {
       background-color: #45a049;
     }
-    .average-rating {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #ffd700; /* doré */
+    .average-rating-card {
+  max-width: 350px;
+  margin: 30px auto;
+  padding: 20px 25px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #f0f0f3, #cacaca);
+  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
   text-align: center;
+  transition: transform 0.3s ease;
 }
+.average-rating-card:hover {
+  transform: scale(1.02);
+}
+
+.average-rating-content {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+}
+
+.average-rating-content i {
+  color: #FFD700; /* Or doré */
+  font-size: 1.6em;
+  margin: 0 2px;
+  transition: transform 0.2s;
+}
+.average-rating-content i:hover {
+  transform: scale(1.1);
+}
+
 
   </style>
 </head>
@@ -231,7 +254,10 @@
 
     <div class="avis-container" id="avis-list">
 
-      <div id="average-rating" class="average-rating"></div>
+      <div class="average-rating-card">
+        <div id="average-rating" class="average-rating-content"></div>
+      </div>
+      
 
      <!-- Avis 1 -->
 <div class="review">
@@ -449,16 +475,31 @@
     let totalStars = 0;
 
     reviews.forEach(review => {
-      const stars = review.querySelectorAll(".stars i.fas").length; // étoiles pleines uniquement
-      totalStars += stars;
+      const starsText = review.querySelector(".stars").textContent.trim();
+      const starsCount = starsText.split("★").length - 1 + (starsText.includes("☆") ? 0.5 : 0);
+      totalStars += starsCount;
     });
 
-    const average = (totalStars / reviews.length).toFixed(1); // une décimale
-    const averageElement = document.getElementById("average-rating");
+    const average = totalStars / reviews.length;
+    const rounded = Math.round(average * 2) / 2;
 
-    if (averageElement) {
-      averageElement.textContent = `Recommandation : ${average} / 5 ⭐`;
+    const fullStars = Math.floor(rounded);
+    const hasHalfStar = rounded % 1 !== 0;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    let starHTML = '';
+    for (let i = 0; i < fullStars; i++) {
+      starHTML += '<i class="fas fa-star"></i>';
     }
+    if (hasHalfStar) {
+      starHTML += '<i class="fas fa-star-half-alt"></i>';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+      starHTML += '<i class="far fa-star"></i>';
+    }
+
+    const averageElement = document.getElementById("average-rating");
+    averageElement.innerHTML = `Note moyenne : ${rounded.toFixed(1)} / 5<br>${starHTML}`;
   });
 </script>
 
