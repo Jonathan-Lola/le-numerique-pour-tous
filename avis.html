@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Avis Clients | Le Numérique pour Tous</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+      color: #2c3e50;
     }
 
     header {
-      background: #4a00e0;
-      background: linear-gradient(to right, #8e2de2, #4a00e0);
-      padding: 20px;
-      text-align: center;
+      background-color: #6c2bd9;
       color: white;
+      padding: 20px 0;
+      text-align: center;
     }
 
     header h1 {
@@ -26,98 +26,116 @@
       font-size: 2.5em;
     }
 
-    nav {
-      margin-top: 10px;
-    }
-
     nav a {
+      margin: 0 15px;
       color: white;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: 600;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: yellow;
+      color: #ffe600;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
+    .avis-section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
-    .average-rating {
+    h2 {
       text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .average-rating h2 {
-      font-size: 1.8em;
+      color: #4a148c;
+      font-size: 2em;
       margin-bottom: 10px;
     }
 
-    .stars {
+    #average-rating {
+      text-align: center;
       font-size: 1.5em;
-      color: #FFD700;
+      margin: 20px 0 40px;
+      color: #333;
     }
 
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    .avis-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 20px;
     }
 
-    .review-card {
-      background: white;
+    .review {
+      background: #ffffff;
+      border-left: 6px solid #7C3AED;
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      padding: 20px 25px;
+      max-width: 350px;
+      text-align: left;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
 
-    .review-card:hover {
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .review:hover {
       transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
     }
 
-    .review-card img {
-      width: 60px;
-      height: 60px;
+    .review img {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
+      margin-right: 15px;
     }
 
-    .review-card .name {
+    .review .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .review .name {
       font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 1.1em;
+      color: #2c3e50;
     }
 
-    .review-card .age {
+    .review .age-range {
       font-size: 0.9em;
       color: #777;
-      margin-bottom: 10px;
     }
 
-    .review-card .stars {
-      margin-bottom: 10px;
+    .review .date {
+      font-size: 0.8em;
+      color: #aaa;
     }
 
-    .review-card p {
+    .review .stars {
+      margin: 8px 0;
+    }
+
+    .review .stars i {
+      color: #FFD700;
+    }
+
+    .review p {
       font-size: 0.95em;
       color: #444;
-      text-align: center;
+      line-height: 1.4em;
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      background: #f0f0f0;
-      margin-top: 40px;
+      background-color: #f8f9fa;
+      margin-top: 50px;
       font-size: 0.9em;
     }
   </style>
@@ -134,105 +152,141 @@
     </nav>
   </header>
 
-  <div class="container">
-    <div class="average-rating">
-      <h2>Note moyenne des utilisateurs</h2>
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <span style="margin-left: 10px; font-size: 1em;">(4.7 / 5)</span>
+  <section class="avis-section">
+    <h2>Avis de nos clients</h2>
+    <div id="average-rating"></div>
+
+    <div class="avis-container" id="avis-list">
+      <!-- Avis 1 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo de cliente">
+          <div>
+            <div class="name">Lola P.</div>
+            <div class="age-range">Plus de 60 ans</div>
+            <div class="date">27 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Super expérience avec l'aide numérique, très réactifs et bienveillants !</p>
+      </div>
+
+      <!-- Avis 2 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Photo de client">
+          <div>
+            <div class="name">Jean M.</div>
+            <div class="age-range">41-60 ans</div>
+            <div class="date">22 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <p>Service très utile pour mieux utiliser mon smartphone. Merci !</p>
+      </div>
+
+      <!-- Avis 3 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Photo de cliente">
+          <div>
+            <div class="name">Camille L.</div>
+            <div class="age-range">20-40 ans</div>
+            <div class="date">18 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Merci pour votre pédagogie, j’ai pu créer mon compte en ligne facilement.</p>
+      </div>
+
+      <!-- Avis 4 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Photo de client">
+          <div>
+            <div class="name">Marc D.</div>
+            <div class="age-range">41-60 ans</div>
+            <div class="date">15 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <p>Le service est très pratique, surtout pour les démarches administratives.</p>
+      </div>
+
+      <!-- Avis 5 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Photo de cliente">
+          <div>
+            <div class="name">Sophie R.</div>
+            <div class="age-range">Plus de 60 ans</div>
+            <div class="date">12 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Professionnalisme et écoute au top ! Je recommande vivement.</p>
+      </div>
+
+      <!-- Avis 6 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Photo de client">
+          <div>
+            <div class="name">Pierre B.</div>
+            <div class="age-range">41-60 ans</div>
+            <div class="date">10 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★☆</div>
+        <p>Merci pour votre patience et vos explications claires.</p>
+      </div>
+
+      <!-- Avis 7 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Photo de cliente">
+          <div>
+            <div class="name">Nina T.</div>
+            <div class="age-range">Moins de 20 ans</div>
+            <div class="date">8 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Parfait pour apprendre à utiliser les outils numériques au quotidien !</p>
+      </div>
+
+      <!-- Avis 8 -->
+      <div class="review">
+        <div class="header">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Photo de client">
+          <div>
+            <div class="name">Lucas M.</div>
+            <div class="age-range">20-40 ans</div>
+            <div class="date">5 avril 2025</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Un service vraiment utile, facile à comprendre même pour les débutants.</p>
       </div>
     </div>
-
-    <div class="reviews-grid">
-      <div class="review-card">
-        <img src="images/homme1.jpg" alt="Jean D.">
-        <div class="name">Jean D.</div>
-        <div class="age">Plus de 60 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p>Excellent accompagnement. Je recommande vivement cette aide numérique pour les seniors !</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/femme1.jpg" alt="Lola P.">
-        <div class="name">Lola P.</div>
-        <div class="age">41-60 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p>Très professionnel, très patient. J’ai appris à utiliser mon smartphone en toute simplicité.</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/femme2.jpg" alt="Claire M.">
-        <div class="name">Claire M.</div>
-        <div class="age">20-40 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-        </div>
-        <p>Très bonne pédagogie. Un service utile pour toutes les générations.</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/homme2.jpg" alt="Antoine R.">
-        <div class="name">Antoine R.</div>
-        <div class="age">20-40 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-        </div>
-        <p>Très réactif, bonne écoute. Une vraie aide pour mon grand-père.</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/femme3.jpg" alt="Sophie N.">
-        <div class="name">Sophie N.</div>
-        <div class="age">Plus de 60 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-        </div>
-        <p>Merci pour votre gentillesse et vos explications claires. Je recommande !</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/homme3.jpg" alt="Luc B.">
-        <div class="name">Luc B.</div>
-        <div class="age">41-60 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p>Un très bon accompagnement, humain et efficace. Bravo pour cette initiative.</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/femme4.jpg" alt="Julie C.">
-        <div class="name">Julie C.</div>
-        <div class="age">20-40 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-        </div>
-        <p>Ma maman est ravie ! Elle utilise maintenant son smartphone sans problème.</p>
-      </div>
-
-      <div class="review-card">
-        <img src="images/homme4.jpg" alt="Marc T.">
-        <div class="name">Marc T.</div>
-        <div class="age">Plus de 60 ans</div>
-        <div class="stars">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p>Un service qui m’a rendu plus autonome avec les outils numériques. Merci !</p>
-      </div>
-    </div>
-  </div>
+  </section>
 
   <footer>
     &copy; 2025 Le Numérique pour Tous - Tous droits réservés.
   </footer>
+
+  <script>
+    // Calcul de la moyenne des notes
+    const notes = [5, 4, 5, 4, 5, 4, 5, 5];
+    const average = notes.reduce((a, b) => a + b) / notes.length;
+    const rounded = Math.round(average);
+
+    const stars = '★★★★★☆☆☆☆☆'.slice(5 - rounded, 10 - rounded);
+
+    document.getElementById('average-rating').innerHTML =
+      `<strong>Note moyenne : </strong> ${stars.split('').map((s, i) =>
+        `<i class="${i < rounded ? 'fas' : 'far'} fa-star"></i>`).join('')} (${average.toFixed(1)}/5)`;
+  </script>
 
 </body>
 </html>
