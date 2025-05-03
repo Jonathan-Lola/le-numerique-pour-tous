@@ -201,6 +201,14 @@
     .confirmation-content button:hover {
       background-color: #45a049;
     }
+    .average-rating {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffd700; /* doré */
+  text-align: center;
+}
+
   </style>
 </head>
 <body>
@@ -449,7 +457,7 @@
     const averageElement = document.getElementById("average-rating");
 
     if (averageElement) {
-      averageElement.textContent = `Note moyenne : ${average} / 5 ⭐`;
+      averageElement.textContent = `Recommandation : ${average} / 5 ⭐`;
     }
   });
 </script>
