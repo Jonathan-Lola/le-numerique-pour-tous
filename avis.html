@@ -83,12 +83,11 @@
 
     /* Disposition des avis modernes en cartes */
     .review {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background: #ffffff;
+  border-left: 6px solid #7C3AED; /* Liseré violet moderne */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  padding: 20px 25px;
   margin: 20px;
   max-width: 400px;
   text-align: left;
@@ -97,6 +96,12 @@
   opacity: 0;
   animation: fadeIn 1s forwards;
 }
+
+.review:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
 
 
     @keyframes fadeIn {
@@ -127,11 +132,18 @@
     }
 
     .review .header .name {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #34495e;
-      margin-bottom: 5px;
-    }
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.review p {
+  font-size: 1em;
+  color: #444;
+  margin-top: 10px;
+  line-height: 1.5em;
+}
+
 
     .review .header .age-range {
       font-size: 0.9em;
