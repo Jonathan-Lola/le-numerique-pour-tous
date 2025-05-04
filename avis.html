@@ -1,24 +1,77 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Avis Clients - Le Numérique pour Tous</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avis Clients | Le Numérique pour Tous</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom right, #8e44ad, #3498db);
-      color: white;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+      color: #2c3e50;
     }
 
     header {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1rem;
-      font-size: 1.8rem;
+      background-color: #495e75;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #ffe600;
+    }
+
+    .avis-section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4a148c;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    #average-rating {
+      text-align: center;
+      font-size: 1.5em;
+      margin: 20px 0 30px;
+      color: #333;
+    }
+
+    .add-review-btn {
+      display: block;
+      margin: 0 auto 40px;
+      padding: 10px 25px;
+      background-color: #4a148c;
+      color: white;
+      border: none;
+      border-radius: 5px;
       font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-review-btn:hover {
+      background-color: #6a1b9a;
     }
 
     .avis-container {
@@ -26,256 +79,394 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding: 20px;
     }
 
-    .avis {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      width: 300px;
+    .review {
+      background: #ffffff;
+      border-left: 6px solid #7C3AED;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      padding: 20px 25px;
+      max-width: 350px;
       text-align: left;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
 
-    .avis img {
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .review:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .review img {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      float: left;
-      margin-right: 10px;
+      object-fit: cover;
+      margin-right: 15px;
     }
 
-    .nom {
-      font-weight: bold;
-    }
-
-    .note {
+    .review .header {
       display: flex;
       align-items: center;
-      margin-top: 5px;
+      margin-bottom: 10px;
     }
 
-    .etoile {
-      width: 20px;
-      height: 20px;
-      margin-right: 2px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/1/17/Star_full_yellow.svg') no-repeat center;
-      background-size: contain;
+    .review .name {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #2c3e50;
     }
 
-    .demi-etoile {
-      background: linear-gradient(to right, #FFD700 50%, rgba(255,255,255,0.2) 50%);
-      -webkit-background-clip: text;
-      color: transparent;
+    .review .age-range {
+      font-size: 0.9em;
+      color: #777;
     }
 
-    .note span {
-      margin-left: 8px;
-      font-size: 14px;
+    .review .date {
+      font-size: 0.8em;
+      color: #aaa;
     }
 
-    #ajouter-avis {
-      margin: 30px auto;
+    .review .stars {
+      margin: 8px 0;
+    }
+
+    .review .stars i {
+      color: #FFD700;
+    }
+
+    .review p {
+      font-size: 0.95em;
+      color: #444;
+      line-height: 1.4em;
+    }
+
+    /* Modale confirmation */
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .confirmation-content {
+      background-color: white;
+      padding: 40px;
+      text-align: center;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .confirmation-content i {
+      font-size: 50px;
+      color: #4CAF50;
+    }
+
+    .confirmation-content h3 {
+      font-size: 1.5em;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .confirmation-content p {
+      color: #555;
+      font-size: 1.1em;
+      margin-top: 10px;
+    }
+
+    .confirmation-content button {
+      margin-top: 20px;
       padding: 10px 20px;
-      font-size: 16px;
-      background: #f1c40f;
+      background-color: #4CAF50;
+      color: white;
       border: none;
-      color: black;
       border-radius: 5px;
       cursor: pointer;
     }
 
-    /* Modale */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .modal-content {
-      background-color: white;
-      color: black;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .close {
-      float: right;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .confirmation {
-      display: none;
-      margin-top: 20px;
-      color: #2ecc71;
-      font-weight: bold;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    button[type="submit"] {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 4px;
+    .confirmation-content button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-  <header>Avis Clients</header>
 
-  <div class="avis-container">
-    <!-- Exemple d'avis -->
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="avatar">
-      <div class="nom">Claire</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile demi-etoile"></div>
-        <span>4.5 / 5</span>
-      </div>
-      <p>Service très professionnel, patient et à l'écoute. Je recommande vivement !</p>
-    </div>
+  <header>
+    <h1>Le Numérique pour Tous</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="avis.html">Avis</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="avatar">
-      <div class="nom">Jean</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div>
-        <span>5 / 5</span>
-      </div>
-      <p>Grâce à leur aide, j’ai enfin compris comment utiliser mon smartphone !</p>
-    </div>
+  <section class="avis-section">
+    <h2>Avis de nos clients</h2>
+    <div id="average-rating"></div>
 
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="avatar">
-      <div class="nom">Sophie</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile demi-etoile"></div>
-        <span>3.5 / 5</span>
-      </div>
-      <p>Bonne explication mais j’aurais aimé plus de temps. Sinon top !</p>
-    </div>
+    <button class="add-review-btn" onclick="openModal()">Ajouter un avis</button>
 
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="avatar">
-      <div class="nom">Michel</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div>
-        <span>4 / 5</span>
-      </div>
-      <p>Intervention rapide et efficace. Très bon service !</p>
-    </div>
-
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="avatar">
-      <div class="nom">Élise</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile demi-etoile"></div>
-        <span>2.5 / 5</span>
-      </div>
-      <p>Quelques soucis de communication au début, mais problème résolu.</p>
-    </div>
-
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="avatar">
-      <div class="nom">André</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div>
-        <span>3 / 5</span>
-      </div>
-      <p>Un bon accompagnement pour les bases du numérique.</p>
-    </div>
-
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="avatar">
-      <div class="nom">Marie</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile"></div>
-        <span>5 / 5</span>
-      </div>
-      <p>Je suis ravie, je peux maintenant utiliser ma tablette toute seule.</p>
-    </div>
-
-    <div class="avis">
-      <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="avatar">
-      <div class="nom">Paul</div>
-      <div class="note">
-        <div class="etoile"></div><div class="etoile"></div><div class="etoile"></div><div class="etoile demi-etoile"></div>
-        <span>3.5 / 5</span>
-      </div>
-      <p>Bon rapport qualité/prix, intervention à domicile appréciée.</p>
+    <div class="avis-container" id="avis-list">
+     <!-- Avis 1 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Photo de cliente">
+    <div>
+      <div class="name">Lola P.</div>
+      <div class="age-range">Plus de 60 ans</div>
+      <div class="date">27 avril 2025</div>
     </div>
   </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  </div>
+  <p>Super expérience avec l'aide numérique, très réactifs et bienveillants !</p>
+</div>
 
-  <button id="ajouter-avis">Ajouter un avis</button>
+<!-- Avis 2 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Photo de client">
+    <div>
+      <div class="name">Jean M.</div>
+      <div class="age-range">41-60 ans</div>
+      <div class="date">22 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+  </div>
+  <p>Service très utile pour mieux utiliser mon smartphone. Merci !</p>
+</div>
 
-  <!-- MODALE -->
+<!-- Avis 3 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Photo de cliente">
+    <div>
+      <div class="name">Camille L.</div>
+      <div class="age-range">20-40 ans</div>
+      <div class="date">18 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  </div>
+  <p>Merci pour votre pédagogie, j’ai pu créer mon compte en ligne facilement.</p>
+</div>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" id="fermer">&times;</span>
-      <h2>Laissez votre avis</h2>
-      <form action="https://formsubmit.co/jonathan.ponsonnaille@hotmail.fr" method="POST">
-        <input type="text" name="nom" placeholder="Votre prénom" required>
-        <select name="avatar" required>
-          <option value="">Choisissez un avatar</option>
-          <option value="https://randomuser.me/api/portraits/men/1.jpg">Homme 1</option>
-          <option value="https://randomuser.me/api/portraits/women/2.jpg">Femme 1</option>
-          <option value="https://randomuser.me/api/portraits/men/3.jpg">Homme 2</option>
-          <option value="https://randomuser.me/api/portraits/women/4.jpg">Femme 2</option>
-        </select>
+<!-- Avis 4 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Photo de client">
+    <div>
+      <div class="name">Marc D.</div>
+      <div class="age-range">41-60 ans</div>
+      <div class="date">15 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+  </div>
+  <p>Le service est très pratique, surtout pour les démarches administratives.</p>
+</div>
 
-        <select name="note" required>
-          <option value="">Note</option>
-          <option value="5">5 - Excellent</option>
-          <option value="4.5">4.5 - Très bien</option>
-          <option value="4">4 - Bien</option>
-          <option value="3.5">3.5 - Correct</option>
-          <option value="3">3 - Moyen</option>
-          <option value="2.5">2.5 - Passable</option>
-        </select>
-        <textarea name="message" placeholder="Votre message" required></textarea>
+<!-- Avis 5 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Photo de cliente">
+    <div>
+      <div class="name">Sophie R.</div>
+      <div class="age-range">Plus de 60 ans</div>
+      <div class="date">12 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  </div>
+  <p>Professionnalisme et écoute au top ! Je recommande vivement.</p>
+</div>
+
+<!-- Avis 6 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Photo de client">
+    <div>
+      <div class="name">Pierre B.</div>
+      <div class="age-range">41-60 ans</div>
+      <div class="date">10 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+  </div>
+  <p>Merci pour votre patience et vos explications claires.</p>
+</div>
+
+<!-- Avis 7 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Photo de cliente">
+    <div>
+      <div class="name">Nina T.</div>
+      <div class="age-range">Moins de 20 ans</div>
+      <div class="date">8 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  </div>
+  <p>Parfait pour apprendre à utiliser les outils numériques au quotidien !</p>
+</div>
+
+<!-- Avis 8 -->
+<div class="review">
+  <div class="header">
+    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Photo de client">
+    <div>
+      <div class="name">Lucas M.</div>
+      <div class="age-range">20-40 ans</div>
+      <div class="date">5 avril 2025</div>
+    </div>
+  </div>
+  <div class="stars">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  </div>
+  <p>Un service vraiment utile, facile à comprendre même pour les débutants.</p>
+</div>
+
+    </div>
+  </section>
+
+  <!-- Formulaire modale -->
+  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;">
+    <div style="background:white; max-width:500px; margin:100px auto; padding:30px; border-radius:10px; position:relative;">
+      <h3>Ajouter un avis</h3>
+      <form id="review-form">
+        <input type="hidden" name="_subject" value="Nouvel avis client depuis le site">
         <input type="hidden" name="_captcha" value="false">
-        <button type="submit">Envoyer</button>
+        <label>Nom / Prénom :</label><br>
+        <input type="text" name="nom" required style="width:100%; padding:8px; margin-bottom:10px;"><br>
+        <label>Tranche d’âge :</label><br>
+        <select name="age" required style="width:100%; padding:8px; margin-bottom:10px;">
+          <option value="">Choisir</option>
+          <option value="Moins de 20 ans">Moins de 20 ans</option>
+          <option value="20-40 ans">20-40 ans</option>
+          <option value="41-60 ans">41-60 ans</option>
+          <option value="Plus de 60 ans">Plus de 60 ans</option>
+        </select><br>
+        <label>Avis :</label><br>
+        <textarea name="avis" required rows="5" style="width:100%; padding:8px;"></textarea><br>
+        <label>Évaluation :</label><br>
+        <select name="evaluation" required style="width:100%; padding:8px; margin-bottom:10px;">
+          <option value="★★★★★">★★★★★ 5/5</option>
+          <option value="★★★★☆">★★★★☆ 4/5</option>
+          <option value="★★★☆☆">★★★☆☆ 3/5</option>
+          <option value="★★☆☆☆">★★☆☆☆ 2/5</option>
+          <option value="★☆☆☆☆">★☆☆☆☆ 1/5</option>
+        </select><br>
+        <button type="submit" style="padding:10px 20px; background-color:#4a148c; color:white; border:none; cursor:pointer; margin-top:10px;">Envoyer</button>
       </form>
-      <div class="confirmation" id="confirmation">Merci ! Votre avis a été envoyé.</div>
+      <button onclick="closeModal()" style="position:absolute; top:10px; right:10px; background-color:#f44336; color:white; border:none; cursor:pointer;">X</button>
     </div>
   </div>
+
+  <!-- Modale de confirmation -->
+  <div id="confirmation-modal" class="confirmation-modal">
+    <div class="confirmation-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>Merci pour votre message !</h3>
+      <p>Il sera disponible sous 48H.</p>
+      <button onclick="closeConfirmationModal()">Fermer</button>
+    </div>
+  </div>
+
   <script>
-    const bouton = document.getElementById('ajouter-avis');
-    const modal = document.getElementById('modal');
-    const fermer = document.getElementById('fermer');
-    const confirmation = document.getElementById('confirmation');
+    function openModal() {
+      document.getElementById('modal').style.display = 'block';
+    }
 
-    bouton.onclick = () => modal.style.display = 'block';
-    fermer.onclick = () => modal.style.display = 'none';
-    window.onclick = e => { if (e.target == modal) modal.style.display = 'none'; }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
 
-    document.querySelector('form').onsubmit = () => {
-      setTimeout(() => {
-        confirmation.style.display = 'block';
-      }, 500);
-    };
+    function openConfirmationModal() {
+      document.getElementById('confirmation-modal').style.display = 'flex';
+    }
+
+    function closeConfirmationModal() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+    }
+
+    document.getElementById('review-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêche le rechargement de la page
+      let formData = new FormData(this);
+
+      fetch('https://formsubmit.co/ajax/jonathan.ponsonnaille@hotmail.fr', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        openConfirmationModal();
+        closeModal();
+      })
+      .catch(error => {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      });
+    });
   </script>
+<script>
+  function renderAverageRating() {
+    const reviews = document.querySelectorAll(".review .stars");
+    let total = 0;
+    let count = 0;
+
+    reviews.forEach(starContainer => {
+      // Compte uniquement les étoiles PLEINES (class="fas fa-star")
+      const fullStars = starContainer.querySelectorAll("i.fas.fa-star").length;
+      total += fullStars;
+      count++;
+    });
+
+    const average = total / count;
+    const rounded = Math.round(average * 10) / 10;
+
+    const full = Math.floor(rounded);
+    const half = (rounded % 1 >= 0.25 && rounded % 1 < 0.75) ? 1 : 0;
+    const empty = 5 - full - half;
+
+    const starHTML = `
+      ${'<i class="fas fa-star"></i>'.repeat(full)}
+      ${half ? '<i class="fas fa-star-half-alt"></i>' : ''}
+      ${'<i class="far fa-star"></i>'.repeat(empty)}
+    `;
+
+    document.getElementById("average-rating").innerHTML =
+      `Note moyenne : ${rounded}/5<br>${starHTML}`;
+  }
+
+  window.onload = renderAverageRating;
+</script>
 
 </body>
 </html>
+
+
+
