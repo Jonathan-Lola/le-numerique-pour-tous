@@ -203,7 +203,8 @@
     }
   </style>
   <!-- Choices.js CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>  
 
 </head>
 <body>
@@ -386,12 +387,9 @@
         <label for="avatar">Choisissez un avatar :</label>
 <select id="avatar" name="avatar" required>
   <option value="" disabled selected>-- Sélectionnez un avatar --</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=grandma" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=grandma"}'>Femme senior</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=grandpa" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=grandpa"}'>Homme senior</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=adultwoman" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=adultwoman"}'>Femme adulte</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=youngman" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=youngman"}'>Jeune homme</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=smiley" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=smiley"}'>Neutre</option>
-  <option value="https://api.dicebear.com/7.x/fun-emoji/svg?seed=catlover" data-custom-properties='{"image":"https://api.dicebear.com/7.x/fun-emoji/svg?seed=catlover"}'>Avatar fun</option>
+  <option value="https://cdn.pixabay.com/photo/2016/04/01/09/26/avatar-1295394_960_720.png" data-custom-properties='{"image":"https://cdn.pixabay.com/photo/2016/04/01/09/26/avatar-1295394_960_720.png"}'>Femme senior souriante</option>
+  <option value="https://cdn.pixabay.com/photo/2016/04/01/09/26/avatar-1295395_960_720.png" data-custom-properties='{"image":"https://cdn.pixabay.com/photo/2016/04/01/09/26/avatar-1295395_960_720.png"}'>Homme senior avec lunettes</option>
+  <!-- Ajoutez les autres options ici -->
 </select><br>
         <button type="submit" style="padding:10px 20px; background-color:#4a148c; color:white; border:none; cursor:pointer; margin-top:10px;">Envoyer</button>
       </form>
@@ -479,7 +477,7 @@
 </script>
 <!-- Choices.js JS -->
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<script>
+  <script>
   const avatarSelect = new Choices('#avatar', {
     searchEnabled: false,
     itemSelectText: '',
@@ -499,8 +497,7 @@
           return template(`
             <div class="${classNames.item} ${classNames.itemChoice} ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable}"
               data-select-text="${this.config.itemSelectText}" data-choice data-id="${data.id}" data-value="${data.value}"
-              ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}
-              >
+              ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}>
               <img src="${data.customProperties.image}" width="24" height="24" style="vertical-align:middle; border-radius:50%; margin-right:8px;" />
               ${data.label}
             </div>
@@ -510,7 +507,6 @@
     }
   });
 </script>
-
 
 </body>
 </html>
